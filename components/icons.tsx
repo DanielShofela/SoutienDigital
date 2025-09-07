@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { motion, Variants } from 'framer-motion';
 
@@ -18,7 +17,7 @@ const pathVariants: Variants = {
     pathLength: 1,
     opacity: 1,
     transition: {
-      duration: 1.5,
+      duration: 2.5, // Increased duration from 1.5s to 2.5s
       ease: 'easeInOut',
     },
   },
