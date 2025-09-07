@@ -1,5 +1,48 @@
 
 import React from 'react';
+import { motion, Variants } from 'framer-motion';
+
+const svgVariants: Variants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.3,
+    },
+  },
+};
+
+const pathVariants: Variants = {
+  hidden: { pathLength: 0, opacity: 0 },
+  visible: {
+    pathLength: 1,
+    opacity: 1,
+    transition: {
+      duration: 1.5,
+      ease: 'easeInOut',
+    },
+  },
+};
+
+const AnimatedSvg: React.FC<{ children: React.ReactNode; width?: string; height?: string; viewBox?: string; }> = ({ children, width="24", height="24", viewBox="0 0 24 24" }) => (
+    <motion.svg
+      width={width}
+      height={height}
+      viewBox={viewBox}
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      variants={svgVariants}
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true, amount: 0.5 }}
+    >
+        {children}
+    </motion.svg>
+);
+
 
 export const MenuIcon: React.FC = () => (
   <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -30,54 +73,54 @@ export const CheckIcon: React.FC<{ className?: string }> = ({ className }) => (
 
 // Service Icons
 export const BriefcaseIcon: React.FC = () => (
-    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-        <rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect>
-        <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path>
-    </svg>
+    <AnimatedSvg width="48" height="48" viewBox="0 0 24 24">
+        <motion.rect x="2" y="7" width="20" height="14" rx="2" ry="2" variants={pathVariants}></motion.rect>
+        <motion.path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16" variants={pathVariants}></motion.path>
+    </AnimatedSvg>
 );
 
 export const CodeIcon: React.FC = () => (
-    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-        <polyline points="16 18 22 12 16 6"></polyline>
-        <polyline points="8 6 2 12 8 18"></polyline>
-    </svg>
+    <AnimatedSvg width="48" height="48" viewBox="0 0 24 24">
+        <motion.polyline points="16 18 22 12 16 6" variants={pathVariants}></motion.polyline>
+        <motion.polyline points="8 6 2 12 8 18" variants={pathVariants}></motion.polyline>
+    </AnimatedSvg>
 );
 
 export const MegaphoneIcon: React.FC = () => (
-    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-        <path d="m3 11 18-5v12L3 14v-3z"></path>
-        <path d="M11.6 16.8a3 3 0 1 1-5.8-1.6"></path>
-    </svg>
+    <AnimatedSvg width="48" height="48" viewBox="0 0 24 24">
+        <motion.path d="m3 11 18-5v12L3 14v-3z" variants={pathVariants}></motion.path>
+        <motion.path d="M11.6 16.8a3 3 0 1 1-5.8-1.6" variants={pathVariants}></motion.path>
+    </AnimatedSvg>
 );
 
 export const GlobeIcon: React.FC = () => (
-    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-        <circle cx="12" cy="12" r="10"></circle>
-        <line x1="2" y1="12" x2="22" y2="12"></line>
-        <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
-    </svg>
+    <AnimatedSvg width="48" height="48" viewBox="0 0 24 24">
+        <motion.circle cx="12" cy="12" r="10" variants={pathVariants}></motion.circle>
+        <motion.line x1="2" y1="12" x2="22" y2="12" variants={pathVariants}></motion.line>
+        <motion.path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" variants={pathVariants}></motion.path>
+    </AnimatedSvg>
 );
 
 // About Icons
 export const TargetIcon: React.FC = () => (
-  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-    <circle cx="12" cy="12" r="10"></circle>
-    <circle cx="12" cy="12" r="6"></circle>
-    <circle cx="12" cy="12" r="2"></circle>
-  </svg>
+  <AnimatedSvg>
+    <motion.circle cx="12" cy="12" r="10" variants={pathVariants}></motion.circle>
+    <motion.circle cx="12" cy="12" r="6" variants={pathVariants}></motion.circle>
+    <motion.circle cx="12" cy="12" r="2" variants={pathVariants}></motion.circle>
+  </AnimatedSvg>
 );
 
 export const EyeIcon: React.FC = () => (
-  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-    <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
-    <circle cx="12" cy="12" r="3"></circle>
-  </svg>
+  <AnimatedSvg>
+    <motion.path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" variants={pathVariants}></motion.path>
+    <motion.circle cx="12" cy="12" r="3" variants={pathVariants}></motion.circle>
+  </AnimatedSvg>
 );
 
 export const DiamondIcon: React.FC = () => (
-  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-    <path d="M12 2L2 8.5l10 13.5L22 8.5 12 2z"></path>
-    <path d="M2 8.5l10 13.5L22 8.5"></path>
-    <path d="M12 2v20"></path>
-  </svg>
+  <AnimatedSvg>
+    <motion.path d="M12 2L2 8.5l10 13.5L22 8.5 12 2z" variants={pathVariants}></motion.path>
+    <motion.path d="M2 8.5l10 13.5L22 8.5" variants={pathVariants}></motion.path>
+    <motion.path d="M12 2v20" variants={pathVariants}></motion.path>
+  </AnimatedSvg>
 );

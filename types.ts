@@ -1,4 +1,3 @@
-// Fix: Add missing import for React.
 import React from 'react';
 
 export interface Service {
@@ -10,6 +9,7 @@ export interface Service {
 export interface ProductPlan {
   name: string;
   price: string;
+  oldPrice?: string;
   features: string[];
   popular: boolean;
 }

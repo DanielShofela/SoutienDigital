@@ -1,6 +1,7 @@
 
 import React, { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+// FIX: Imported Variants from framer-motion to correctly type animation variants.
+import { motion, AnimatePresence, Variants } from 'framer-motion';
 import { MenuIcon, XIcon } from './icons';
 
 interface HeaderProps {
@@ -8,14 +9,16 @@ interface HeaderProps {
 }
 
 const navLinks = [
-  { name: 'À Propos', href: '#about' },
+  { name: 'Accueil', href: '#hero' },
   { name: 'Services', href: '#services' },
+  { name: 'À Propos', href: '#about' },
   { name: 'Tarifs', href: '#products' },
   { name: 'FAQ', href: '#faq' },
   { name: 'Contact', href: '#contact' },
 ];
 
-const Header: React.FC<HeaderProps> = ({ scrolled }) => {
+// FIX: Changed component definition to a standard function to avoid potential type conflicts with framer-motion props.
+const Header = ({ scrolled }: HeaderProps) => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   const scrollToSection = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
@@ -24,7 +27,7 @@ const Header: React.FC<HeaderProps> = ({ scrolled }) => {
     setMobileMenuOpen(false);
   };
 
-  const headerVariants = {
+  const headerVariants: Variants = {
     initial: { backgroundColor: 'rgba(255, 255, 255, 0)', y: -100 },
     scrolled: { 
       backgroundColor: 'rgba(255, 255, 255, 1)', 
@@ -38,10 +41,14 @@ const Header: React.FC<HeaderProps> = ({ scrolled }) => {
     },
   };
 
-  const mobileMenuVariants = {
+  // FIX: Explicitly typed mobileMenuVariants with Variants from framer-motion to resolve TypeScript error.
+  const mobileMenuVariants: Variants = {
     closed: { opacity: 0, x: '100%' },
     open: { opacity: 1, x: '0%', transition: { duration: 0.3, ease: 'easeInOut' } },
   };
+
+  const textColor = scrolled ? 'text-[#0B2D5C]' : 'text-white';
+  const logoColor = scrolled ? 'text-[#0B2D5C]' : 'text-white';
 
   return (
     <>
@@ -54,8 +61,8 @@ const Header: React.FC<HeaderProps> = ({ scrolled }) => {
       >
         <div className="container mx-auto px-6 py-4 flex justify-between items-center">
           <a href="#hero" onClick={(e) => scrollToSection(e, '#hero')} className="text-2xl font-bold">
-            <span className="text-[#0B2D5C]">Soutien</span>
-            <span className="text-[#FF7A00]">Digital</span>
+            <span className={logoColor}>Soutien</span>
+            <span className="text-[#FF6600]">Digital</span>
           </a>
           <nav className="hidden md:flex space-x-8">
             {navLinks.map((link) => (
@@ -63,14 +70,14 @@ const Header: React.FC<HeaderProps> = ({ scrolled }) => {
                 key={link.name}
                 href={link.href}
                 onClick={(e) => scrollToSection(e, link.href)}
-                className="text-[#0B2D5C] font-medium hover:text-[#FF7A00] transition-colors duration-300"
+                className={`${textColor} font-medium hover:text-[#FF6600] transition-colors duration-300`}
               >
                 {link.name}
               </a>
             ))}
           </nav>
           <div className="md:hidden">
-            <button onClick={() => setMobileMenuOpen(!mobileMenuOpen)} className="text-[#0B2D5C] z-50">
+            <button onClick={() => setMobileMenuOpen(!mobileMenuOpen)} className={`${textColor} z-50`}>
               {mobileMenuOpen ? <XIcon /> : <MenuIcon />}
             </button>
           </div>
@@ -92,7 +99,7 @@ const Header: React.FC<HeaderProps> = ({ scrolled }) => {
                   key={link.name}
                   href={link.href}
                   onClick={(e) => scrollToSection(e, link.href)}
-                  className="text-2xl text-[#0B2D5C] font-medium hover:text-[#FF7A00] transition-colors duration-300"
+                  className="text-2xl text-[#0B2D5C] font-medium hover:text-[#FF6600] transition-colors duration-300"
                 >
                   {link.name}
                 </a>

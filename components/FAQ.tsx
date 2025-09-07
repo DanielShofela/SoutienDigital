@@ -23,11 +23,16 @@ const faqData: FaqItem[] = [
   }
 ];
 
-const AccordionItem: React.FC<{
+// FIX: Changed component definition to a standard function to avoid potential type conflicts with framer-motion props.
+const AccordionItem = ({
+  item,
+  isOpen,
+  onClick,
+}: {
   item: FaqItem;
   isOpen: boolean;
   onClick: () => void;
-}> = ({ item, isOpen, onClick }) => {
+}) => {
   return (
     <div className="border-b border-gray-200 py-4">
       <button
@@ -59,7 +64,8 @@ const AccordionItem: React.FC<{
   );
 };
 
-const FAQ: React.FC = () => {
+// FIX: Changed component definition to a standard function to avoid potential type conflicts with framer-motion props.
+const FAQ = () => {
   const [openIndex, setOpenIndex] = useState<number | null>(0);
 
   const handleClick = (index: number) => {

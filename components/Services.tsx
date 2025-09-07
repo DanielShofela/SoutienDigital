@@ -1,6 +1,7 @@
 
 import React from 'react';
-import { motion } from 'framer-motion';
+// FIX: Imported Variants from framer-motion to correctly type animation variants.
+import { motion, Variants } from 'framer-motion';
 import { type Service } from '../types';
 import { BriefcaseIcon, CodeIcon, MegaphoneIcon, GlobeIcon } from './icons';
 
@@ -27,7 +28,7 @@ const services: Service[] = [
   }
 ];
 
-const containerVariants = {
+const containerVariants: Variants = {
   hidden: { opacity: 0 },
   visible: {
     opacity: 1,
@@ -38,7 +39,8 @@ const containerVariants = {
   }
 };
 
-const cardVariants = {
+// FIX: Explicitly typed cardVariants with Variants to fix type error with 'type: "spring"'.
+const cardVariants: Variants = {
   hidden: { opacity: 0, y: 50 },
   visible: {
     opacity: 1,
@@ -51,7 +53,8 @@ const cardVariants = {
   }
 };
 
-const Services: React.FC = () => {
+// FIX: Changed component definition to a standard function to avoid potential type conflicts with framer-motion props.
+const Services = () => {
   return (
     <section id="services" className="py-20 md:py-32 bg-white">
       <div className="container mx-auto px-6">
@@ -80,16 +83,15 @@ const Services: React.FC = () => {
               variants={cardVariants}
               whileHover={{ 
                 y: -10, 
-                boxShadow: "0 25px 50px -12px rgba(0, 0, 0, 0.15), 0 0 20px 0px rgba(255, 122, 0, 0.4)",
+                boxShadow: "0 25px 50px -12px rgba(0, 0, 0, 0.15), 0 0 20px 0px rgba(255, 102, 0, 0.4)",
               }}
               transition={{ type: "spring", stiffness: 300 }}
             >
-              <motion.div 
-                className="text-[#FF7A00] mb-6"
-                whileHover={{ scale: 1.2, rotate: 10 }}
+              <div 
+                className="text-[#FF6600] mb-6"
               >
                 {service.icon}
-              </motion.div>
+              </div>
               <h3 className="text-xl font-bold text-[#0B2D5C] mb-3">{service.title}</h3>
               <p className="text-gray-600">{service.description}</p>
             </motion.div>

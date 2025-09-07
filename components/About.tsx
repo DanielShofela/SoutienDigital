@@ -1,10 +1,12 @@
 
 import React from 'react';
-import { motion } from 'framer-motion';
+// FIX: Imported Variants from framer-motion to correctly type animation variants.
+import { motion, Variants } from 'framer-motion';
 import { TargetIcon, EyeIcon, DiamondIcon } from './icons';
 
-const About: React.FC = () => {
-  const containerVariants = {
+// FIX: Changed component definition to a standard function to avoid potential type conflicts with framer-motion props.
+const About = () => {
+  const containerVariants: Variants = {
     hidden: { opacity: 0 },
     visible: { 
       opacity: 1,
@@ -12,7 +14,8 @@ const About: React.FC = () => {
     }
   };
 
-  const itemVariants = (fromLeft = true) => ({
+  // FIX: Added a return type of Variants to the function to fix the framer-motion type error.
+  const itemVariants = (fromLeft = true): Variants => ({
     hidden: { opacity: 0, x: fromLeft ? -50 : 50 },
     visible: { opacity: 1, x: 0, transition: { duration: 0.8, ease: 'easeOut' } }
   });
@@ -47,21 +50,21 @@ const About: React.FC = () => {
             viewport={{ once: true, amount: 0.3 }}
           >
             <motion.div variants={itemVariants(false)} className="mb-8 flex items-start gap-4">
-              <div className="text-[#FF7A00] mt-1"><TargetIcon /></div>
+              <div className="text-[#FF6600] mt-1"><TargetIcon /></div>
               <div>
                 <h3 className="text-xl font-semibold text-[#0B2D5C] mb-2">Notre Mission</h3>
                 <p className="text-gray-600">Fournir des solutions numériques innovantes et sur mesure qui génèrent des résultats concrets pour les PME et startups, en agissant comme un véritable partenaire de leur croissance.</p>
               </div>
             </motion.div>
             <motion.div variants={itemVariants(false)} className="mb-8 flex items-start gap-4">
-              <div className="text-[#FF7A00] mt-1"><EyeIcon /></div>
+              <div className="text-[#FF6600] mt-1"><EyeIcon /></div>
               <div>
                 <h3 className="text-xl font-semibold text-[#0B2D5C] mb-2">Notre Vision</h3>
                 <p className="text-gray-600">Devenir l'agence digitale de référence, reconnue pour son expertise, sa créativité et son engagement indéfectible envers la réussite de ses clients.</p>
               </div>
             </motion.div>
             <motion.div variants={itemVariants(false)} className="flex items-start gap-4">
-              <div className="text-[#FF7A00] mt-1"><DiamondIcon /></div>
+              <div className="text-[#FF6600] mt-1"><DiamondIcon /></div>
               <div>
                 <h3 className="text-xl font-semibold text-[#0B2D5C] mb-2">Nos Valeurs</h3>
                 <p className="text-gray-600">Partenariat, Innovation, Transparence et Excellence. Ces piliers guident chacune de nos actions et collaborations.</p>
