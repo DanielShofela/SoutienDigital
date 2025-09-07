@@ -15,6 +15,49 @@
             font-family: 'Inter', sans-serif;
             scroll-behavior: smooth;
         }
+
+        /* Animation for POPULAR plan card on hover */
+        .animated-popular-card {
+            position: relative;
+            border: 2px solid #FF6600; /* Visible orange border at rest */
+            overflow: hidden;
+        }
+
+        .animated-popular-card::before {
+            content: '';
+            position: absolute;
+            top: -50%; left: -50%;
+            width: 200%; height: 200%;
+            background: conic-gradient(transparent, rgba(255, 102, 0, 0.7), transparent 30%);
+            animation: rotate 4s linear infinite;
+            opacity: 0; /* Hidden at rest */
+            transition: opacity 0.4s ease-in-out;
+        }
+
+        .animated-popular-card:hover::before {
+            opacity: 1; /* Visible on hover */
+        }
+        
+        /* Animation for POPULAR plan button */
+        .popular-plan-button {
+            position: relative;
+            overflow: hidden;
+            border: 2px solid #004080; /* Blue border as requested */
+        }
+
+        .popular-plan-button::before {
+            content: '';
+            position: absolute;
+            top: -50%; left: -50%;
+            width: 200%; height: 200%;
+            background: conic-gradient(transparent, rgba(255, 255, 255, 0.7), transparent 15%);
+            animation: rotate 4s linear infinite;
+        }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
     </style>
     
     <script type="importmap">

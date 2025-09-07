@@ -100,7 +100,7 @@ const Products = ({ onPlanSelect }: ProductsProps) => {
           {plans.map((plan) => (
             <motion.div
               key={plan.name}
-              className={`relative bg-white rounded-xl shadow-lg p-8 flex flex-col ${plan.popular ? 'border-2 border-[#FF6600]' : 'border border-gray-200'}`}
+              className={`relative bg-white rounded-xl shadow-lg p-8 flex flex-col ${plan.popular ? 'animated-popular-card' : 'border border-gray-200'}`}
               variants={cardVariants}
               whileHover={{ y: -10, boxShadow: "0 25px 50px -12px rgba(0, 0, 0, 0.15)" }}
               transition={{ type: "spring", stiffness: 300 }}
@@ -127,7 +127,11 @@ const Products = ({ onPlanSelect }: ProductsProps) => {
 
               <motion.button
                 onClick={() => onPlanSelect(plan.name)}
-                className={`w-full mt-auto font-bold py-3 px-8 rounded-full shadow-lg transition-colors duration-300 ${plan.popular ? 'bg-[#FF6600] text-white' : 'bg-white text-[#FF6600] border-2 border-[#FF6600] hover:bg-[#FF6600] hover:text-white'}`}
+                className={`w-full mt-auto font-bold py-3 px-8 rounded-full shadow-lg transition-colors duration-300 ${
+                    plan.popular 
+                    ? 'bg-[#FF6600] text-white popular-plan-button' 
+                    : 'bg-white text-[#FF6600] border-2 border-[#FF6600] hover:bg-[#FF6600] hover:text-white'
+                }`}
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
                 transition={{ type: 'spring', stiffness: 400, damping: 17 }}
