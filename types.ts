@@ -1,9 +1,14 @@
 import React from 'react';
 
-export interface Service {
+export interface ServiceCategory {
   icon: React.ReactNode;
   title: string;
   description: string;
+  services: string[];
+  cta: {
+    text: string;
+    href: string;
+  };
 }
 
 export interface ProductPlan {
