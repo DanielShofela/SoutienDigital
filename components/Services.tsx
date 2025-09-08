@@ -17,7 +17,7 @@ const serviceCategories: ServiceCategory[] = [
     ],
     cta: {
       text: 'Voir nos réalisations',
-      href: '/portfolio-cv',
+      href: 'https://portfolio-cv1.netlify.app/',
     }
   },
   {
