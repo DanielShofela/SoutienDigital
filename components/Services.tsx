@@ -32,7 +32,7 @@ const serviceCategories: ServiceCategory[] = [
     ],
     cta: {
       text: 'Voir nos réalisations',
-      href: '/portfolio-web',
+      href: 'https://portfolio-web011.netlify.app/',
     }
   },
   {
